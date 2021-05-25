@@ -2,6 +2,22 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 
+// Material-UI components
+
+
+import { FormControlLabel } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
+
+import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { blueGrey, orange, yellow } from '@material-ui/core/colors';
+
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
+
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -25,6 +41,7 @@ function LoginForm() {
   }; // end login
 
   return (
+    <>
     <form className="formPanel" onSubmit={login}>
       <h2>Login</h2>
       {errors.loginMessage && (
@@ -60,6 +77,25 @@ function LoginForm() {
         <input className="btn" type="submit" name="submit" value="Log In" />
       </div>
     </form>
+    <Grid container>
+        <Grid item sm={12} md={6} lg={3} xl={1}>
+           <Paper>
+             <TextField
+             color="primary"
+             label="username"
+             variant="outlined"
+             type="username">
+             </TextField>
+             <TextField
+             color="primary"
+             label="username"
+             variant="outlined"
+             type="username">
+             </TextField>
+           </Paper>
+        </Grid>
+    </Grid>
+    </>
   );
 }
 
