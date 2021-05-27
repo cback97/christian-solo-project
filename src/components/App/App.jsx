@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import CheckIn from '../CheckIn/CheckIn';
+import PatientStats from '../PatientStats/PatientStats';
 
 import './App.css';
 
@@ -106,6 +107,9 @@ function App() {
           {/* If none of the other routes matched, we will show a 404. */}
           <Route path="/checkin">
             <CheckIn/>
+          </Route>
+          <Route path="/stats">
+            <PatientStats/>
           </Route>
           <Route>
             <h1>404</h1>

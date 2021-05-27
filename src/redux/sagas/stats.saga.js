@@ -2,10 +2,11 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 // worker Saga: will be fired on "LOGIN" actions
-function* getForm(action) {
+function* getForm() {
     try {
         const forms = yield axios.get('/api/forms');
-        console.log(action.payload);
+        yield put({ type: 'FETCH_FORM', payload: movies.data });
+        console.log(forms.data);
 
     } catch (error) {
         alert(' sorry adding a form is not working at the moment. Try again later');
