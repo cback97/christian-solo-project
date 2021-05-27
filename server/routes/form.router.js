@@ -28,9 +28,9 @@ router.get('/', (req, res) => {
 /**
  * POST route template
  */
- router.post('/', rejectUnauthenticated, (req, res) => {
+ router.post('/', (req, res) => {
   
-  const user_id = req.user.id;
+  const user_id = 1;
   const query  = `INSERT INTO "form_data" ("gad_form_score", "phq_form_score", "reflections","user_id")
       VALUES ($1, $2, $3, $4)`;
   pool.query(query, [req.body.gad, req.body.phq, req.body.reflection, user_id])
