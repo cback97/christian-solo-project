@@ -10,6 +10,19 @@ const {
  */
 router.get('/', (req, res) => {
   // GET route code here
+  const user_id = req.user.id;
+  const queryText = `SELECT first_name, last_name, gad_form_score, phq_form_score FROM user
+                      JOIN form_data on user.id = form_data.user_id
+                      WHERE form_data.user_id = ${user_id};`;
+                      
+  pool.query(queryText)
+    .then( result => {
+      res.send(result.rows);
+    })
+    .catch( error => {
+      console.log('Error is GET items', error);
+      res.sendStatus(500)
+    })
 });
 
 /**
