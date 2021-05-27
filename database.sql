@@ -4,6 +4,8 @@
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
 
+DROP TABLE "user";
+
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -16,9 +18,11 @@ CREATE TABLE "user" (
     
 
 
+DROP TABLE "form_data";
+
 CREATE TABLE "form_data" (
     "id" SERIAL PRIMARY KEY,
     "gad_form_score" INT NOT NULL,
     "phq_form_score" INT NOT NULL,
     "reflections" VARCHAR (300) NOT NULL,
-    "date_submitted" DATE NOT NULL);
+    "user_id" INT);
