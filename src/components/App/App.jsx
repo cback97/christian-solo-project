@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import CheckIn from '../CheckIn/CheckIn';
 
 import './App.css';
 
@@ -103,6 +104,9 @@ function App() {
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
+          <Route path="/checkin">
+            <CheckIn/>
+          </Route>
           <Route>
             <h1>404</h1>
           </Route>
