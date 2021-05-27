@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
-
+import { useSelector } from 'react-redux';
+import './LoginForm.css'
 // Material-UI components
-
-
 import { FormControlLabel } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
 
 import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { blueGrey, orange, yellow } from '@material-ui/core/colors';
+import { blueGrey, orange, yellow, blue, } from '@material-ui/core/colors';
 
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -17,8 +15,48 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
+import Button from '@material-ui/core/Button';
+import { ButtonGroup } from '@material-ui/core';
+
+// CSS STYLES
+const useStyles = makeStyles({
+  root: {
+    "& > *": {
+      background: 'linear-gradient(90deg,#333,#999)',
+      border: 0,
+      borderRadius: 15,
+      color: 'blueGrey',
+      padding: '0 30px',
+    }
+  }, headerTabs: {
+    backgroundColor: blueGrey[400],
+    color: orange[400],
+    fontSize: 24,
+    paddingTop: 20,
+    paddingBottom: 15
+  }, field: {
+    marginBottom: "4em",
+
+  }, paper: {
+    height: 500,
+    width: 500,
+    alignContent: 'center'
+  }, textfield: {
+    width: 200,
+    marginLeft: 150
+  }, colors: {
+    backgroundColor: blue[500],
+    color: orange[200]
+  }
+
+
+})
+
 
 function LoginForm() {
+  // MAKE STYLES 
+  const classes = useStyles();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
@@ -42,59 +80,89 @@ function LoginForm() {
 
   return (
     <>
-    <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
-      {errors.loginMessage && (
-        <h3 className="alert" role="alert">
-          {errors.loginMessage}
-        </h3>
-      )}
-      <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
-      </div>
-    </form>
-    <Grid container>
-        <Grid item sm={12} md={6} lg={3} xl={1}>
-           <Paper>
-             <TextField
-             color="primary"
-             label="username"
-             variant="outlined"
-             type="username">
-             </TextField>
-             <TextField
-             color="primary"
-             label="username"
-             variant="outlined"
-             type="username">
-             </TextField>
-           </Paper>
+    {/* // MATERIAL UI LOGIN */}
+    <Grid container direction="column" alignItems="center" justify='center'>
+        <Grid item className={classes.colors} lg={5} >
+          <Paper elevation={4} className={classes.paper}>
+            <form onSubmit={login}>
+            
+            <Typography justify='center' variant="h5">Login</Typography>
+            
+            <br />
+            <Grid item >
+              <TextField
+                className={classes.textfield}
+                required
+                size="small"
+                color='orange'
+                label="username"
+                variant="outlined"
+                type="username"
+                value={username}
+              onChange={(event) => setUsername(event.target.value)}
+                >
+              </TextField>
+            </Grid>
+            <br />
+            <Grid item>
+              <TextField
+                className={classes.textfield}
+                required
+                size="small"
+                color='blue'
+                label="password"
+                variant="outlined"
+                type="password"
+                value={password}
+              onChange={(event) => setPassword(event.target.value)}>
+              </TextField>
+            
+            <br />
+            
+              <Button type="submit" size="large" color="secondary" style={{ marginLeft: 200, marginTop: 35}}variant="contained"> Log In</Button>
+            </Grid>
+            </form>
+          </Paper>
         </Grid>
-    </Grid>
+      </Grid>
+      {/* // END MATERIAL UI LOGIN */}
+      {/* <form className="formPanel" onSubmit={login}>
+        <h2>Login</h2>
+        {errors.loginMessage && (
+          <h3 className="alert" role="alert">
+            {errors.loginMessage}
+          </h3>
+        )}
+        <div>
+          <label htmlFor="username">
+            Username:
+          <input
+              type="text"
+              name="username"
+              required
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="password">
+            Password:
+          <input
+              type="password"
+              name="password"
+              required
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <input className="btn" type="submit" name="submit" value="Log In" />
+        </div>
+      </form> */}
+
+      
     </>
   );
 }
