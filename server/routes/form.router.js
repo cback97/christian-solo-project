@@ -44,5 +44,19 @@ router.get('/', (req, res) => {
     })
 });
 
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  const id = req.params.id;
+  let sqlText = `DELETE FROM form_data WHERE id=$1`;
+  pool
+    .query(sqlText, [id])
+    .then((result) => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      console.log('Error on server deleting scores: ', error);
+      res.sendStatus(500);
+    });
+})
+
 
 module.exports = router;

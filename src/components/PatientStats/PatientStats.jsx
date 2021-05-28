@@ -20,20 +20,25 @@ function PatientStats() {
         dispatch({ type: 'GET_FORM_DATA', payload: itemID })
     };
 
+    const deleteSelector =(objectID) => {
+        dispatch({type: 'DELETE_ENTRY', payload: objectID})
+        
+            dispatch({ type: 'GET_FORM' });
+        
+    }
+
     return (
 
         <div>
             <h1>This is {reduxStore}`s Form Stats</h1>
 
-            <table>
-                <thead><tr><th> SELECT A FORM TO VIEW</th></tr></thead>
+            <table className="hoverTable">
+                <thead><tr className="hoverTable"> SELECT A FORM TO VIEW</tr></thead>
                 <tbody>
                     {clientItem.map(
-                        (item) => <tr className="form-rows" key={item.id} onClick={(event) => formSelector(item.id)}>
-                    <td>{item.date_submitted}</td>
-                    <td>{item.gad_form_score}</td>
-                    <td>{item.phq_form_score}</td>
-                    <td>{item.reflections}</td></tr>)}
+                        (item) => <tr className="hoverTable" key={item.id} onClick={(event) => formSelector(item.id)}>
+                    <td className="hoverTable">{item.date_submitted} | {item.gad_form_score} | {item.phq_form_score} | {item.reflections}</td>
+                    <td id="hoverButton"><button key={item.id} onClick={(event) => deleteSelector(item.id)}>DELETE</button></td></tr>)}
                 </tbody>
             </table>
         </div>
