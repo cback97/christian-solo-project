@@ -12,18 +12,13 @@ import TextField from '@material-ui/core/TextField';
 
 
 
-// const onSubmit = () => {
-
-// }
-
-
 function CheckIn() {
     // Call to SAGA()
     const dispatch = useDispatch();
 
     //Local States for capturing the form data 
-    const [phq9, setPhq9] = useState(phq1 + phq2 + phq3 + phq4 + phq5 + phq6 + phq7 + phq8 + phqq9);
-    const [gad7, setGad7] = useState(gad1 + gad2 + gad3 + gad4 + gad5 + gad6 + gadd7);
+    // const [phq9, setPhq9] = useState(0);
+    // const [gad7, setGad7] = useState(0);
     const [reflection, setReflection] = useState('');
 
     // PHQ-9 SCORE STATES
@@ -47,14 +42,19 @@ function CheckIn() {
     const [gadd7, setGAD7] = useState(0);
 
 
-    function addThemTogether() {
-        event.preventDefault
+    function addThemTogether(event) {
+        
+        event.preventDefault();
 
-        setPhq9(phq1 + phq2 + phq3 + phq4 + phq5 + phq6 + phq7 + phq8 + phqq9);
-        setGad7(gad1 + gad2 + gad3 + gad4 + gad5 + gad6 + gadd7);
+        let totalPhq9= phq1 + phq2 + phq3 + phq4 + phq5 + phq6 + phq7 + phq8 + phqq9;
+        let totalGad7= gad1 + gad2 + gad3 + gad4 + gad5 + gad6 + gadd7;
+        
+        let today = new Date().toLocaleDateString()
 
-        dispatch({ type: 'ADD_FORM', payload: {gad: gad7, phq: phq9, reflection: reflection }})
-       
+        console.log(today)
+
+        dispatch({ type: 'ADD_FORM', payload: {gad: totalGad7, phq: totalPhq9, reflection: reflection, dateSubmitted: today }})
+        dispatch({type: 'GET_FORM'})
         // clear input fields
         setReflection('');
 
@@ -79,16 +79,12 @@ function CheckIn() {
         setGAD7(0);
     }
 
-    console.log(phq9);
-    console.log(gad7);
-    console.log(reflection);
-
 
     return (
         <>
             <form onSubmit={addThemTogether}>
                 {/* START PHQ9 */}
-                <header><h4>PHQ-9 FORM</h4></header>
+                <header><h3>PHQ-9 FORM</h3></header>
                 <div>
                     <p>
                         Q1: Little interest or pleasure in doing things?

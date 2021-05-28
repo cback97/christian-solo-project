@@ -14,9 +14,9 @@ function* addForm(action) {
 }
 
 
-function* formSaga() {
+function* checkinSaga() {
   yield takeLatest('ADD_FORM', addForm);
   
 }
 
-export default formSaga;
+export default checkinSaga;

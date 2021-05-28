@@ -1,15 +1,23 @@
 const formReducer = (state = [], action) => {
-    switch (action.type) {
-      case 'SET_USER':
-        return action.payload;
-      case 'UNSET_USER':
-        return [];
-      default:
-        return state;
-    }
+  if(action.type === 'FETCH_FORM') {
+    return action.payload;
+
+    console.log(action.payload);
+  }
+    return state;
+  };
+
+const specFormReducer = (state = [], action) => {
+  if(action.type === 'FETCH_SPEC_FORM') {
+    return action.payload;
+
+    console.log(action.payload);
+  }
+    return state;
   };
   
   // user will be on the redux state at:
   // state.user
   export default formReducer;
+  
   
