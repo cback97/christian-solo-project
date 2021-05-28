@@ -43,15 +43,18 @@ function CheckIn() {
 
 
     function addThemTogether(event) {
-        console.log('somthin');
+        
         event.preventDefault();
 
         let totalPhq9= phq1 + phq2 + phq3 + phq4 + phq5 + phq6 + phq7 + phq8 + phqq9;
         let totalGad7= gad1 + gad2 + gad3 + gad4 + gad5 + gad6 + gadd7;
-        console.log(totalPhq9);
         
-        dispatch({ type: 'ADD_FORM', payload: {gad: totalGad7, phq: totalPhq9, reflection: reflection }})
-       
+        let today = new Date().toLocaleDateString()
+
+        console.log(today)
+
+        dispatch({ type: 'ADD_FORM', payload: {gad: totalGad7, phq: totalPhq9, reflection: reflection, dateSubmitted: today }})
+        dispatch({type: 'GET_FORM'})
         // clear input fields
         setReflection('');
 
@@ -75,9 +78,6 @@ function CheckIn() {
         setGAD6(0);
         setGAD7(0);
     }
-
-
-    console.log(reflection);
 
 
     return (

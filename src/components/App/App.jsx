@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import CheckIn from '../CheckIn/CheckIn';
 import PatientStats from '../PatientStats/PatientStats';
+import SpecsPage from '../SpecDetails/SpecDetails';
 
 import './App.css';
 
@@ -110,6 +111,9 @@ function App() {
           </Route>
           <Route path="/stats">
             <PatientStats/>
+          </Route>
+          <Route path="/specs">
+            <SpecsPage/>
           </Route>
           <Route>
             <h1>404</h1>
