@@ -44,6 +44,21 @@ router.get('/', (req, res) => {
     })
 });
 
+router.put('/id', rejectUnauthenticated, (req, res) => {
+  const data = req.body; 
+  const id = req.body.id;
+  const sqlText = ``; //whatever you want to update
+  pool
+    .query(sqlText, [data.phq, data.gad, data.reflection, id])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log('Error on server updating scores: ', error);
+      res.sendStatus(500);
+    });
+});
+
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const id = req.params.id;
   let sqlText = `DELETE FROM form_data WHERE id=$1`;

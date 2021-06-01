@@ -51,7 +51,7 @@ function CheckIn() {
         
         let today = new Date().toLocaleDateString()
 
-        console.log(today)
+        
 
         dispatch({ type: 'ADD_FORM', payload: {gad: totalGad7, phq: totalPhq9, reflection: reflection, dateSubmitted: today }})
         dispatch({type: 'GET_FORM'})

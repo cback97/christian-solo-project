@@ -21,14 +21,14 @@ import { ButtonGroup } from '@material-ui/core';
 // CSS STYLES
 const useStyles = makeStyles({
   root: {
-    "& > *": {
+     
       background: 'linear-gradient(90deg,#333,#999)',
       border: 0,
       borderRadius: 15,
       color: 'blueGrey',
       padding: '0 30px',
     }
-  }, headerTabs: {
+  , headerTabs: {
     backgroundColor: blueGrey[400],
     color: orange[400],
     fontSize: 24,
