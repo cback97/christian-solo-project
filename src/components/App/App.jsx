@@ -22,6 +22,8 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import CheckIn from '../CheckIn/CheckIn';
 import PatientStats from '../PatientStats/PatientStats';
 import SpecsPage from '../SpecDetails/SpecDetails';
+import Personal from '../PersonalInformation/PersonalInformation';
+import AdminHome from '../AdminHome/AdminHome'
 
 import './App.css';
 
@@ -48,7 +50,7 @@ function App() {
           >
             <AboutPage />
           </Route>
- 
+
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
@@ -107,13 +109,19 @@ function App() {
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route path="/checkin">
-            <CheckIn/>
+            <CheckIn />
           </Route>
           <Route path="/stats">
-            <PatientStats/>
+            <PatientStats />
           </Route>
           <Route path="/specs">
-            <SpecsPage/>
+            <SpecsPage />
+          </Route>
+          <Route path="/personal">
+            <Personal />
+          </Route>
+          <Route path="/admin">
+            <AdminHome />
           </Route>
           <Route>
             <h1>404</h1>
