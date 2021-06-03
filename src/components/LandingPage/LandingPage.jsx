@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,10 +10,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import { useDispatch } from 'react-redux';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
+
 
 
 const useStyles = makeStyles({
@@ -25,6 +26,9 @@ const useStyles = makeStyles({
 });
 
 function LandingPage() {
+  useEffect(() => {
+    dispatch({ type: 'FETCH_USER' });
+  }, []);
   const classes = useStyles();
 
   const [heading, setHeading] = useState('Welcome');

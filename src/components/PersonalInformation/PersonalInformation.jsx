@@ -19,7 +19,13 @@ import { Button } from '@material-ui/core';
 
 
 function Personal() {
-
+    console.log('IN RENDER.........');
+    
+    useEffect(() => {
+        console.log('IN USE EFFECT');
+        dispatch({ type: 'FETCH_USER' });
+    }, []);
+    
     // STATE OF EDIT
     const [editMode, setEditMode] = useState(false);
 
@@ -77,11 +83,27 @@ function Personal() {
 
     }
 
-    useEffect(() => {
-        dispatch({ type: 'FETCH_USER' });
-    }, []);
+    // const [phqAnswers, setPhqAnswers] = useState(initStatePhq);
 
-    // { editMode === false && <button onClick={handleEdit} >edit</button>}
+    // const initStateGad = {
+    //     gadAnswer1: 0,
+    //     gadAnswer2: 0,
+    //     gadAnswer3: 0,
+    //     gadAnswer4: 0,
+    //     gadAnswer5: 0,
+    //     gadAnswer6: 0,
+    //     gadAnswer7: 0,
+    // };
+   // SAMPLE FUNCTION FOR EDIT LATER
+    // const handleInputChangeFor = (propertyName) => (e) => {
+    //     setPhqAnswers({
+    //         ...phqAnswers,
+    //         [propertyName]: e.target.value,
+    //     });
+    // };
+ 
+
+
 
     const YourDetails = () => {
 
@@ -133,17 +155,12 @@ function Personal() {
                 <Grid container justify='center'>
                     <Typography className={globalStyle.fname} justify="center" variant="h2">{userDeets.first_name}'s Details</Typography>
                 </Grid>
-                { editMode === false && <Button variant='contained' size='large' onClick={()=> handleEdit()}> Edit</Button> }
+                {editMode === false && <Button variant='contained' size='large' onClick={()=> handleEdit()}> Edit</Button> }
                 {editMode && <Button variant='contained' size='large' onClick={()=> saveEdit()}>Save</Button>}
 
                 {!editMode ?
                     <Grid container justify='center'  >
-                        {/* <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
-                            <Box className={globalStyle.btnArea}>
-                                <EditButton onClick={handleEdit} />
-                            </Box>
 
-                        </Grid> */}
                         <Grid item xs={4} sm={4} md={4} lg={4} xl={4} >
                             <Paper style={{ height: 150 }}>
                                 <Typography justify="center" variant="h6">PERSONAL INFO</Typography>
@@ -172,6 +189,8 @@ function Personal() {
                             </Paper>
                         </Grid>
                     </Grid>
+
+                    // BEGINNING EDIT MODE
                     :
                     <Grid container justify='center'  >
                         <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
