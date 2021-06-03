@@ -17,8 +17,7 @@ function PHQ9Form() {
 
     const globalStyle = globalUseStyle();
     const [phqTotal, setPhqTotal] = useState(0);
-    const [gadTotal, setGadTotal] = useState(0);
-    const [reflection, setReflection] = useState('');
+   
 
     
 
@@ -36,35 +35,21 @@ function PHQ9Form() {
 
     const [phqAnswers, setPhqAnswers] = useState(initStatePhq);
 
-    const initStateGad = {
-        gadAnswer1: 0,
-        gadAnswer2: 0,
-        gadAnswer3: 0,
-        gadAnswer4: 0,
-        gadAnswer5: 0,
-        gadAnswer6: 0,
-        gadAnswer7: 0,
-    };
-
-    const [gadAnswers, setGadAnswers] = useState(initStateGad);
 
 
     const totalScore = (obj) => Object.values(obj).reduce((a, b) => a + b);
 
-    const addTotalScore = (scoreObj) => {
-        let total = totalScore(scoreObj);
-        return total;
-    };
+
 
     
 
     const submitScores = (e) => {
         e.preventDefault();
         setPhqTotal(addTotalScore(phqAnswers));
-        setGadTotal(addTotalScore(gadAnswers));
+      
         dispatch({
-            type: 'ADD_FORM',
-            payload: { gad: gadTotal, phq: phqTotal, reflection: reflection },
+            type: 'EDIT_PHQ',
+            payload: { phq: phqTotal },
         });
 
         handleCancel();
@@ -72,17 +57,17 @@ function PHQ9Form() {
     };
 
     
-    const handleInputChangeFor = (propertyName) => (e) => {
-        setPhqAnswers({
-            ...phqAnswers,
-            [propertyName]: e.target.value,
-        });
-    };
+    // const handleInputChangeFor = (propertyName) => (e) => {
+    //     setPhqAnswers({
+    //         ...phqAnswers,
+    //         [propertyName]: e.target.value,
+    //     });
+    // };
 
     const handleCancel = () => {
-        setReflection('');
+       
         setPhqAnswers(initStatePhq);
-        setGadAnswers(initStateGad);
+        
     }
 
     return (

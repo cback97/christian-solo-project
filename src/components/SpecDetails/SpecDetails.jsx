@@ -72,6 +72,7 @@ function SpecsPage() {
                         <p>15–21: severe anxiety </p>
                         <h4>Your Score</h4>
                         <p>{spec.gad_form_score}</p>
+                        <button>EDIT</button>
                         <h3>PHQ-9 SCORE</h3>
                         Interpreting PHQ-9 Scores 
                         <p>0-4: Minimal depression</p> 
@@ -81,8 +82,10 @@ function SpecsPage() {
                         <p>20-27: Severe depression</p> 
                         <h4>Your Score</h4>
                         <p>{spec.phq_form_score}</p>
+                        <button>EDIT</button>
                         <h3>REFLECTIONS</h3>
                         <p>{spec.reflections}</p>
+                        <button>EDIT</button>
                     </div>
                 );
             })}
