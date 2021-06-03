@@ -2,21 +2,16 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import './LoginForm.css'
+
 // Material-UI components
-import { FormControlLabel } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
-
 import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { blueGrey, orange, yellow, blue, } from '@material-ui/core/colors';
-
+import { blueGrey, orange, blue, } from '@material-ui/core/colors';
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-
 import Button from '@material-ui/core/Button';
-import { ButtonGroup } from '@material-ui/core';
+
 
 // CSS STYLES
 const useStyles = makeStyles({
@@ -72,6 +67,7 @@ function LoginForm() {
           username: username,
           password: password,
         },
+        
       });
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });

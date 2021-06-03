@@ -17,7 +17,7 @@ import Paper from '@material-ui/core/Paper';
 
 function AdminHome() {
 const history = useHistory();
-const adminClients = useSelector(store => store.user)
+const adminClients = useSelector(store => store.patientProfileReducer)
 const dispatch = useDispatch();
 
 const useStyles = makeStyles({
