@@ -5,7 +5,7 @@ function* editUser( action ) {
     console.log('In edit sage', action.payload);
     try {
         yield axios.put('/api/user', action.payload);
-     
+        yield put( { type: 'FETCH_USER' } ); 
     } catch (error) {
         alert(`Sorry. Things aren't working at the moment. Try again later`);
         console.log('Error adding book', error);
