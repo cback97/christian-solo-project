@@ -19,12 +19,14 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import CheckIn from '../CheckIn/CheckIn';
+// import CheckIn from '../CheckIn/CheckIn';
 import PatientStats from '../PatientStats/PatientStats';
 import SpecsPage from '../SpecDetails/SpecDetails';
 import Personal from '../PersonalInformation/PersonalInformation';
-import AdminHome from '../AdminHome/AdminHome'
-
+import AdminHome from '../AdminHome/AdminHome';
+import PHQ9Form from '../Phq9Form/Phq9Form';
+import GAD7Form from '../Gad7Form/Gad7Form';
+import RefactoredCheckIn from '../RefactoredCheckIn/RefactoredCheckIn';
 import './App.css';
 
 function App() {
@@ -109,7 +111,7 @@ function App() {
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route path="/checkin">
-            <CheckIn />
+            <RefactoredCheckIn  />
           </Route>
           <Route path="/stats">
             <PatientStats />
@@ -122,6 +124,12 @@ function App() {
           </Route>
           <Route path="/admin">
             <AdminHome />
+          </Route>
+          <Route path="/phq">
+            <PHQ9Form  />
+          </Route>
+          <Route path="/gad">
+            <GAD7Form  />
           </Route>
           <Route>
             <h1>404</h1>
