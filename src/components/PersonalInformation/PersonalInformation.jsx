@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import globalUseStyle from '../GlobalImplementation/globalUseStyles';
-import EditButton from '../GlobalImplementation/EditButton';
+// import EditButton from '../GlobalImplementation/EditButton';
 import SaveButton from '../GlobalImplementation/SaveButton';
 
 // MATERIAL UI COMPONENTS
@@ -12,6 +12,7 @@ import { TextField } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { Button } from '@material-ui/core';
 
 
 
@@ -39,9 +40,9 @@ function Personal() {
     // PUSH US SOMEWHERE
     const history = useHistory();
 
+    const dispatch = useDispatch();
 
-
-    const handleEdit = () => {
+    const handleEdit = (e) => {
         // Turn on edit mode
         setEditMode(true);
 
@@ -51,7 +52,7 @@ function Personal() {
         setLName(userDeets.last_name);
         setPhone(userDeets.phone);
         setEmail(userDeets.email);
-        setDob(userDeets.dob);
+        setDob('');
     }
 
     const saveEdit = () => {
@@ -75,6 +76,10 @@ function Personal() {
         history.push('/');
 
     }
+
+    useEffect(() => {
+        dispatch({ type: 'FETCH_USER' });
+    }, []);
 
     // { editMode === false && <button onClick={handleEdit} >edit</button>}
 
@@ -128,57 +133,142 @@ function Personal() {
                 <Grid container justify='center'>
                     <Typography className={globalStyle.fname} justify="center" variant="h2">{userDeets.first_name}'s Details</Typography>
                 </Grid>
-                <Grid container justify='center'  >
-                    <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
-                        <Box className={globalStyle.btnArea}>
-                            {editMode === false && <EditButton onClick={handleEdit} />}
+                { editMode === false && <Button variant='contained' size='large' onClick={()=> handleEdit()}> Edit</Button> }
+                {editMode && <Button variant='contained' size='large' onClick={()=> saveEdit()}>Save</Button>}
+
+                {!editMode ?
+                    <Grid container justify='center'  >
+                        {/* <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
+                            <Box className={globalStyle.btnArea}>
+                                <EditButton onClick={handleEdit} />
+                            </Box>
+
+                        </Grid> */}
+                        <Grid item xs={4} sm={4} md={4} lg={4} xl={4} >
+                            <Paper style={{ height: 150 }}>
+                                <Typography justify="center" variant="h6">PERSONAL INFO</Typography>
+                                <p>First Name: {userDeets.first_name}</p>
+                                <p>Last Name: {userDeets.last_name}</p>
+                                <p>Date of Birth: {userDeets.dob}</p>
+                            </Paper>
+                        </Grid>
+
+                        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+                            <Paper style={{ height: 150 }}>
+                                <Box>
+                                    <Typography justify="center" variant="h6">CONTACT INFO</Typography>
+
+                                    <p>Email: {userDeets.email}</p>
+                                    <p>Phone: {userDeets.phone}</p>
+                                </Box>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+                            <Paper style={{ height: 150 }}>
+                                <Typography justify="center" variant="h6">LOGIN INFO</Typography>
+
+                                <p>{userDeets.username}</p>
+
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                    :
+                    <Grid container justify='center'  >
+                        <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
+                            <Box className={globalStyle.btnArea}>
+                                <SaveButton onClick={saveEdit} />
                         </Box>
 
-                        {/* {userDeets && userDeets.first_name && editMode ?
-                           
+                        </Grid>
+                        <Grid item xs={4} sm={4} md={4} lg={4} xl={4} >
+                            <Paper style={{ height: 150 }}>
+                                <Typography justify="center" variant="h6">PERSONAL INFO</Typography>
+                                {/* <p>First Name: {userDeets.first_name}</p>
+                                <p>Last Name: {userDeets.last_name}</p>
+                                <p>Date of Birth: {userDeets.dob}</p> */}
+                        <TextField
+                                    value={fName}
+                                    fullWidth
+                                    className={globalStyle.input}
+                                    onChange={(e) => setFName(e.target.value)}
+                                    label='Change First Name'
+                                    type="text"
+                                    required
+                                
+                                />
+                        <TextField
+                                    value={lName}
+                                    fullWidth
+                                    className={globalStyle.input}
+                                    onChange={(e) => setLName(e.target.value)}
+                                    label='Change Last Name'
+                                    type="text"
+                                    required
+                                
+                                />
+                        <TextField
+                                    value={dob}
+                                    fullWidth
+                                    className={globalStyle.input}
+                                    onChange={(e) => setDob(e.target.value)}
+                                    label='Change Date of Birth'
+                                    type="date"
+                                    required
+                                
+                                />
+                            </Paper>
+                        </Grid>
+
+                        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+                            <Paper style={{ height: 150 }}>
+                                <Box>
+                                    <Typography justify="center" variant="h6">CONTACT INFO</Typography>
+
+                                    {/* <p>Email: {userDeets.email}</p>
+                                    <p>Phone: {userDeets.phone}</p> */}
                             <TextField
-                                type="text" 
-                                value={fName}
-                                fullWidth
-                                className={globalStyle.input}
-                                onChange={(event) => setFName(event.target.value)}
-                                label='Edit First Name'
-                            />
-                            :
-                            <div>
-                                <label>first Name:</label>
-                                <p>First Name: {fName}</p>
-                            </div> } */}
-                        
-                    </Grid>
-                    <Grid item xs={4} sm={4} md={4} lg={4} xl={4} >
-                        <Paper style={{ height: 150 }}>
-                            <Typography justify="center" variant="h6">PERSONAL INFO</Typography>
-                            <p>First Name: {userDeets.first_name}</p>
-                            <p>Last Name: {userDeets.last_name}</p>
-                            <p>Date of Birth: {userDeets.dob}</p>
-                        </Paper>
-                    </Grid>
+                                    value={email}
+                                    fullWidth
+                                    className={globalStyle.input}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    label='Change Email'
+                                    type="text"
+                                    required
+                                
+                                /> 
+                             <TextField
+                                    value={phone}
+                                    fullWidth
+                                    className={globalStyle.input}
+                                    onChange={(e) => setPhone(e.target.value)}
+                                    label='Change Phone Number'
+                                    type="text"
+                                    required
+                                
+                                />
+                                </Box>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+                            <Paper style={{ height: 150 }}>
+                                <Typography justify="center" variant="h6">LOGIN INFO</Typography>
 
-                    <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-                        <Paper style={{ height: 150 }}>
-                            <Box>
-                                <Typography justify="center" variant="h6">CONTACT INFO</Typography>
+                                {/* <p>{userDeets.username}</p> */}
+                                <TextField
+                                    value={username}
+                                    fullWidth
+                                    className={globalStyle.input}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    label='Change Username'
+                                    type="text"
+                                    required
+                                
+                                />
+                            </Paper>
 
-                                <p>Email: {userDeets.email}</p>
-                                <p>Phone: {userDeets.phone}</p>
-                            </Box>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-                        <Paper style={{ height: 150 }}>
-                            <Typography justify="center" variant="h6">LOGIN INFO</Typography>
-
-                            <p>{userDeets.username}</p>
-
-                        </Paper>
-                    </Grid>
-                </Grid>
+                        </Grid>
+                    </Grid>}
+                    
             </div>
         )
     }
