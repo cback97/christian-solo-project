@@ -22,7 +22,10 @@ DROP TABLE "form_data";
 
 CREATE TABLE "form_data" (
     "id" SERIAL PRIMARY KEY,
+    "date_submitted" VARCHAR(20),
     "gad_form_score" INT NOT NULL,
     "phq_form_score" INT NOT NULL,
     "reflections" VARCHAR (300) NOT NULL,
     "user_id" INT);
+    
+SELECT * FROM "user";
