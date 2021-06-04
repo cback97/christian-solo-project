@@ -1,13 +1,23 @@
 .hoverTable {
   width: 75%;
-  border-spacing: 0;
-  border-radius: 10px;
+ 
+  border-radius: 7px;
 }
 
 .hoverTable td {
   padding: 7px;
   border: #4e95f4 1px solid;
   text-align: center;
+  font-size: larger;
+}
+
+.hoverTable thead {
+  line-height: 15px;
+  font-size: x-large;
+}
+.hoverTable th {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .hoverTable tr {
@@ -22,5 +32,7 @@
 .hoverButton td:hover {
   background-color: #f3f3f3;
 }
+
+
 
 

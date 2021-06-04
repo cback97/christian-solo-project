@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './SpecDetails.css'
 import { Card, CardActionArea, CardContent, FormControlLabel } from '@material-ui/core';
@@ -14,6 +14,33 @@ function SpecsPage() {
     const specReducer = useSelector(store => store.specFormReducer)
 
 
+    // STATE OF EDIT
+    const [phqEditMode, setPhqEditMode] = useState(false);
+    const [gadEditMode, setGadEditMode] = useState(false);
+    const [reflectEditMode, setReflectEditMode] = useState(false);
+
+
+    // PUSH US SOMEWHERE
+    const history = useHistory();
+
+    const dispatch = useDispatch();
+
+
+
+    const editReflection = () => {
+
+        history.push('/reflection')
+    }
+
+    const editGAD = () => {
+
+        history.push('/gad')
+    }
+
+    const editPHQ = () => {
+
+        history.push('/phq')
+    }
 
 
     return (
@@ -42,7 +69,7 @@ function SpecsPage() {
                         <p>15–21: severe anxiety </p>
                         <h4>Your Score</h4>
                         <p>{spec.gad_form_score}</p>
-                        <Button variant='contained' size='large' onClick={() => saveEdit()}>EDIT PHQ SCORE</Button>
+                        <Button variant='contained' size='large' onClick={editGAD}>EDIT PHQ SCORE</Button>
                         <h3>PHQ-9 SCORE</h3>
                         Interpreting PHQ-9 Scores
                         <p>0-4: Minimal depression</p>
@@ -52,10 +79,10 @@ function SpecsPage() {
                         <p>20-27: Severe depression</p>
                         <h4>Your Score</h4>
                         <p>{spec.phq_form_score}</p>
-                        <Button variant='contained' size='large' onClick={() => saveEdit()}>EDIT GAD SCORE</Button>
+                        <Button variant='contained' size='large' onClick={editPHQ}>EDIT GAD SCORE</Button>
                         <h3>REFLECTIONS</h3>
                         <p>{spec.reflections}</p>
-                        <Button variant='contained' size='large' onClick={() => saveEdit()}>EDIT REFLECTION</Button>
+                        <Button variant='contained' size='large' onClick={editReflection}>EDIT REFLECTION</Button>
                     </div>
                 );
             })}

@@ -45,7 +45,6 @@ function PatientStats() {
 
         <div>
             <Grid container justify='center'>
-                
             <ClientHeaderComponent globalStyle={globalStyle}/>
 
                 <Grid container justify='center'>
@@ -54,7 +53,7 @@ function PatientStats() {
 
 
                 <table className="hoverTable" >
-                    <thead className="hoverTable"><tr className="hoverTable"><th className="hoverTable" colSpan="2">SELECT A FORM TO VIEW</th></tr></thead>
+                    <thead className="hoverTable"><tr id="tHeader" className="hoverTable"><th className="hoverTable" colSpan="2">SELECT A FORM TO VIEW</th></tr></thead>
                     <tbody className="hoverTable">
                         {clientItem.map(
                             (item) => <tr className="hoverTable" key={item.id} onClick={(event) => formSelector(item.id)}>
