@@ -105,7 +105,7 @@ function Personal() {
 
 
 
-    const YourDetails = () => {
+    
 
         const homeRoute = () => {
             history.push('/user')
@@ -251,7 +251,7 @@ function Personal() {
                                     className={globalStyle.input}
                                     onChange={(e) => setEmail(e.target.value)}
                                     label='Change Email'
-                                    type="text"
+                                    type=""
                                     required
                                 
                                 /> 
@@ -292,12 +292,8 @@ function Personal() {
         )
     }
 
-    return (
-        <div justify='center'>
-            <YourDetails />
-        </div>
-    )
+ 
 
-}
+
 
 export default Personal;

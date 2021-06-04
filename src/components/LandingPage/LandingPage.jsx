@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -19,9 +20,13 @@ const useStyles = makeStyles({
 });
 
 function LandingPage() {
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, []);
+  
   const classes = useStyles();
 
   const [heading, setHeading] = useState('Welcome');
