@@ -19,7 +19,6 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-// import CheckIn from '../CheckIn/CheckIn';
 import PatientStats from '../PatientStats/PatientStats';
 import SpecsPage from '../SpecDetails/SpecDetails';
 import Personal from '../PersonalInformation/PersonalInformation';

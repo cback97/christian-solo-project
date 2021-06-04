@@ -3,11 +3,10 @@ import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import globalUseStyle from '../GlobalImplementation/globalUseStyles';
-// import EditButton from '../GlobalImplementation/EditButton';
-import SaveButton from '../GlobalImplementation/SaveButton';
+import ClientHeaderComponent from '../GlobalImplementation/ClientHeaderComponent'
 
 // MATERIAL UI COMPONENTS
-import { Box, Card, CardActionArea, CardContent } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
@@ -18,12 +17,9 @@ import { Button } from '@material-ui/core';
 
 
 
-
 function Personal() {
-    console.log('IN RENDER.........');
 
     useEffect(() => {
-        console.log('IN USE EFFECT');
         dispatch({ type: 'FETCH_USER' });
     }, []);
 
@@ -71,75 +67,39 @@ function Personal() {
             phone: phone,
             email: email,
             dob: dob
-        }
+        };
 
         console.log('Updated Book Info:', updatedUser);
-        dispatch({ type: 'EDIT_USER', payload: updatedUser })
+        dispatch({ type: 'EDIT_USER', payload: updatedUser });
 
         // turn off edit mode
-        setEditMode(false)
+        setEditMode(false);
 
         //Navigate back, because this page won't get fresh data from the server
         history.push('/');
 
-    }
-
-
-
-
-
-    const homeRoute = () => {
-        history.push('/user')
-    }
+    };
 
     return (
         <div className="PersonalInfo">
 
             <Grid container justify='center'>
-                {/* BACK TO HOME PAGE */}
-                <Grid item item xs={4} sm={4} md={4} lg={4} xl={4}>
-                    <CardActionArea>
-                        <Card onClick={homeRoute} style={{ height: 125, textAlign: 'center' }}>
-                            <CardContent>
-                                <Typography variant='caption'> Back To Home Page </Typography>
-                            </CardContent>
-                        </Card>
-                    </CardActionArea>
-                </Grid >
-                {/* END BACK TO HOME PAGE  */}
-
-                {/*  PROVIDER CONTACT INFO  */}
-                <Grid item item xs={4} sm={4} md={4} lg={4} xl={4}>
-                    <CardActionArea>
-                        <Card style={{ height: 125, textAlign: 'center' }}>
-                            <CardContent>
-                                <Typography variant='caption'>  Dr. Sandman <br />Email: therapist@help.com<br />Phone: 777-777-7777 </Typography>
-                            </CardContent>
-                        </Card>
-                    </CardActionArea>
-                </Grid >
-                {/* END PROVIDER CONTACT INFO  */}
-
-                {/*  EMERGENCY CONTACT INFO  */}
-                <Grid item item xs={4} sm={4} md={4} lg={4} xl={4}>
-                    <CardActionArea>
-                        <Card style={{ height: 125, textAlign: 'center' }}>
-                            <CardContent>
-                                <Typography variant='caption'>  EMERGENCY LIFE LINE PHONE <br /> Phone: 777-777-7777 </Typography>
-                            </CardContent>
-                        </Card>
-                    </CardActionArea>
-                </Grid >
-                {/*  END EMERGENCY CONTACT INFO  */}
-
+                <ClientHeaderComponent globalStyle={globalStyle} />
             </Grid>
+
             <Grid container justify='center'>
                 <Typography className={globalStyle.fname} justify="center" variant="h2">{userDeets.first_name}'s Details</Typography>
             </Grid>
-            {editMode === false && <Button variant='contained' size='large' onClick={() => handleEdit()}> Edit</Button>}
-            {editMode && <Button variant='contained' size='large' onClick={() => saveEdit()}>Save</Button>}
 
-            {!editMode ?
+            <Grid container justify='center'>
+                <Box className={globalStyle.editButton}>
+                    {editMode === false && <Button variant='contained' size='large' onClick={() => handleEdit()}> Edit</Button>}
+                    {editMode && <Button variant='contained' size='large' onClick={() => saveEdit()}>Save</Button>}
+                </Box>
+            </Grid>
+
+            { !editMode ?
+
                 <Grid container justify='center'  >
 
                     <Grid item xs={4} sm={4} md={4} lg={4} xl={4} >
@@ -155,7 +115,6 @@ function Personal() {
                         <Paper style={{ height: 150 }}>
                             <Box>
                                 <Typography justify="center" variant="h6">CONTACT INFO</Typography>
-
                                 <p>Email: {userDeets.email}</p>
                                 <p>Phone: {userDeets.phone}</p>
                             </Box>
@@ -171,19 +130,15 @@ function Personal() {
                     </Grid>
                 </Grid>
 
-                // BEGINNING EDIT MODE
-                :
-                <Grid container justify='center'  >
-                    <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
-                        <Box className={globalStyle.btnArea}>
-                            <SaveButton onClick={saveEdit} />
-                        </Box>
+                : // BEGINNING EDIT MODE
 
-                    </Grid>
+
+                <Grid container justify='center'  >
+
                     <Grid item xs={4} sm={4} md={4} lg={4} xl={4} >
                         <Paper style={{ height: 150 }}>
                             <Typography justify="center" variant="h6">PERSONAL INFO</Typography>
-    
+
                             <TextField
                                 value={fName}
                                 fullWidth
@@ -213,6 +168,7 @@ function Personal() {
                                 type="date"
                                 required
                                 InputLabelProps={{ shrink: true }}
+
                             />
                         </Paper>
                     </Grid>

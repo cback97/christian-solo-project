@@ -1,21 +1,26 @@
 .hoverTable {
   width: 75%;
-  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: 10px;
 }
 
 .hoverTable td {
   padding: 7px;
   border: #4e95f4 1px solid;
+  text-align: center;
 }
 
 .hoverTable tr {
-  background: #b8d1f3;
+  background: #05c2c5;
 }
 
 .hoverTable td:hover {
-  background-color: #ffff99;
+  background-color: #017d80;
+  cursor: pointer;
 }
 
 .hoverButton td:hover {
-  background-color: #99ffff;
+  background-color: #f3f3f3;
 }
+
+
