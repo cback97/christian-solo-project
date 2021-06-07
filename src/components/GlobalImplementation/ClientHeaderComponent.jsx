@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom';
-import { Card, CardActionArea, CardContent } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
@@ -15,11 +15,13 @@ function ClientHeaderComponent({globalStyle}) {
     return (
         <Grid container justify='center'>
             {/* BACK TO HOME PAGE */}
-            <Grid item item xs={4} sm={4} md={4} lg={4} xl={4}>
+            <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <CardActionArea >
                     <Card onClick={homeRoute} style={{ height: 125, textAlign: 'center' }}>
-                        <CardContent>
+                        <CardContent justify='center'>
+                            <Container>
                             <Typography className={globalStyle.navCard} variant='body1'> Back To Home Page </Typography>
+                            </Container>
                         </CardContent>
                     </Card>
                 </CardActionArea>
@@ -27,7 +29,7 @@ function ClientHeaderComponent({globalStyle}) {
             {/* END BACK TO HOME PAGE  */}
 
             {/*  PROVIDER CONTACT INFO  */}
-            <Grid item item xs={4} sm={4} md={4} lg={4} xl={4}>
+            <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                 <CardActionArea>
                     <Card style={{ height: 125, textAlign: 'center' }}>
                         <CardContent>
@@ -39,7 +41,7 @@ function ClientHeaderComponent({globalStyle}) {
             {/* END PROVIDER CONTACT INFO  */}
 
             {/*  EMERGENCY CONTACT INFO  */}
-            <Grid item item xs={4} sm={4} md={4} lg={4} xl={4}>
+            <Grid xs={12} sm={6} md={4} lg={4} xl={4}>
                 <CardActionArea>
                     <Card style={{ height: 125, textAlign: 'center' }}>
                         <CardContent>

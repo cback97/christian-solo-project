@@ -1,23 +1,27 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import swal from 'sweetalert';
 
 import globalUseStyle from '../GlobalImplementation/globalUseStyles';
-import ClientHeaderComponent from '../GlobalImplementation/ClientHeaderComponent'
+import ClientHeaderComponent from '../GlobalImplementation/ClientHeaderComponent';
 
 // MATERIAL UI COMPONENTS
 import { Box } from '@material-ui/core';
-import { TextField } from '@material-ui/core';
+import { TextField, CssBaseline } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
 
+//MOMENT JS FOR RENDERING DATE CORRECTLY
+import moment from 'moment';
 
 
 
 
 function Personal() {
+
 
     useEffect(() => {
         dispatch({ type: 'FETCH_USER' });
@@ -38,7 +42,7 @@ function Personal() {
     const globalStyle = globalUseStyle();
 
     // USER REDUCER
-    const userDeets = useSelector(store => store.user);
+    const userDetails = useSelector(store => store.user);
 
     // PUSH US SOMEWHERE
     const history = useHistory();
@@ -50,12 +54,12 @@ function Personal() {
         setEditMode(true);
 
         // Set values in state from our user reducer
-        setUsername(userDeets.username);
-        setFName(userDeets.first_name);
-        setLName(userDeets.last_name);
-        setPhone(userDeets.phone);
-        setEmail(userDeets.email);
-        setDob('');
+        setUsername(userDetails.username);
+        setFName(userDetails.first_name);
+        setLName(userDetails.last_name);
+        setPhone(userDetails.phone);
+        setEmail(userDetails.email);
+        setDob(moment(userDetails.dob).format("MM/DD/YYYY"));
     }
 
     const saveEdit = () => {
@@ -82,13 +86,13 @@ function Personal() {
 
     return (
         <div className="PersonalInfo">
-
+            <CssBaseline />
             <Grid container justify='center'>
                 <ClientHeaderComponent globalStyle={globalStyle} />
             </Grid>
 
             <Grid container justify='center'>
-                <Typography className={globalStyle.fname} justify="center" variant="h2">{userDeets.first_name}'s Details</Typography>
+                <Typography className={globalStyle.fname} justify="center" variant="h2">{userDetails.first_name}'s Details</Typography>
             </Grid>
 
             <Grid container justify='center'>
@@ -98,33 +102,33 @@ function Personal() {
                 </Box>
             </Grid>
 
-            { !editMode ?
+            { ! editMode ?
 
                 <Grid container justify='center'  >
 
-                    <Grid item xs={4} sm={4} md={4} lg={4} xl={4} >
+                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
                         <Paper style={{ height: 150 }}>
                             <Typography justify="center" variant="h6">PERSONAL INFO</Typography>
-                            <p>First Name: {userDeets.first_name}</p>
-                            <p>Last Name: {userDeets.last_name}</p>
-                            <p>Date of Birth: {userDeets.dob}</p>
+                            <p>First Name: {userDetails.first_name}</p>
+                            <p>Last Name: {userDetails.last_name}</p>
+                            <p>Date of Birth: {moment(userDetails.dob).format("MM/DD/YYYY")}</p>
                         </Paper>
                     </Grid>
 
-                    <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                         <Paper style={{ height: 150 }}>
                             <Box>
                                 <Typography justify="center" variant="h6">CONTACT INFO</Typography>
-                                <p>Email: {userDeets.email}</p>
-                                <p>Phone: {userDeets.phone}</p>
+                                <p>Email: {userDetails.email}</p>
+                                <p>Phone: {userDetails.phone}</p>
                             </Box>
                         </Paper>
                     </Grid>
-                    <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                         <Paper style={{ height: 150 }}>
                             <Typography justify="center" variant="h6">LOGIN INFO</Typography>
 
-                            <p>{userDeets.username}</p>
+                            <p>{userDetails.username}</p>
 
                         </Paper>
                     </Grid>
@@ -165,7 +169,7 @@ function Personal() {
                                 className={globalStyle.input}
                                 onChange={(e) => setDob(e.target.value)}
                                 label='Change Date of Birth'
-                                type="date"
+                                type="text"
                                 required
                                 InputLabelProps={{ shrink: true }}
 
@@ -205,7 +209,6 @@ function Personal() {
                         <Paper style={{ height: 150 }}>
                             <Typography justify="center" variant="h6">LOGIN INFO</Typography>
 
-                            {/* <p>{userDeets.username}</p> */}
                             <TextField
                                 value={username}
                                 fullWidth
@@ -220,7 +223,15 @@ function Personal() {
 
                     </Grid>
                 </Grid>}
-
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
         </div>
     )
 }

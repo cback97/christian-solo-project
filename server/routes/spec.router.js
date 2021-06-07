@@ -10,7 +10,8 @@ const {
  */
  router.get('/:id', rejectUnauthenticated, (req, res) => {
   const id = req.params.id;
-  console.log(id);
+  console.log('this is PARAMS ID',id);
+  console.log('this is REQ',req)
   let sqlText = `SELECT date_submitted, gad_form_score, phq_form_score, reflections FROM form_data
                       WHERE form_data.id = $1`;
   pool
