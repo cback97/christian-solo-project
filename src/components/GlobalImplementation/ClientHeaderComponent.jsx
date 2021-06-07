@@ -45,7 +45,7 @@ function ClientHeaderComponent({globalStyle}) {
                 <CardActionArea>
                     <Card style={{ height: 125, textAlign: 'center' }}>
                         <CardContent>
-                            <Typography className={globalStyle.navCard} variant='body1'>  EMERGENCY LIFE LINE PHONE <br /> Phone: 777-777-7777 </Typography>
+                            <Typography className={globalStyle.navCard} variant='body1'>  EMERGENCY LIFE LINE PHONE <br /> Phone: 800-273-8255 </Typography>
                         </CardContent>
                     </Card>
                 </CardActionArea>

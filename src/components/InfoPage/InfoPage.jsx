@@ -1,5 +1,13 @@
 import React from 'react';
 import globalUseStyle from '../GlobalImplementation/globalUseStyles';
+import { Card, CardActionArea, CardContent, CardActions, CssBaseline, Grid,  createMuiTheme, ThemeProvider } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import ClientHeaderComponent from '../GlobalImplementation/ClientHeaderComponent'
+import { Button } from '@material-ui/core';
+import CardHeader from '@material-ui/core/CardHeader'
+import Container from '@material-ui/core/Container';
+import { teal } from '@material-ui/core/colors';
+
 // This is one of our simplest components
 // It doesn't have local state
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -8,32 +16,46 @@ import globalUseStyle from '../GlobalImplementation/globalUseStyles';
 function InfoPage() {
   const globalStyle = globalUseStyle();
   return (
-    <Grid container spacing={5} justify="center" alignItems="flex-end">
+    <Container style={{marginTop: 125, textAlign: 'center'}}>
+    <Grid container spacing={5, 5,5,5} justify="center" alignItems="flex-end">
     <Grid item xs={12} sm={6} md={4} className={globalStyle.card}>
-      <CardActionArea onClick={Assessment}>
-        <Card style={{ height: 250, backgroundColor: '#0dd0d3' }}>
+      <CardActionArea >
+        <Card style={{ height: 425, backgroundColor: '#0dd0d3' }}>
           <CardHeader
-            title='Weekly Check-in'
+            title='This app was built using the following:'
             titleTypographyProps={{ align: 'center' }}
             subheaderTypographyProps={{ align: 'center' }}
             className={globalStyle.cardHeader}
           />
 
           <CardContent style={{ backgroundColor: '#0dd0d3' }}>
-            <div className={globalStyle.cardBody}>
-              <Typography variant="subtitle1" color="textSecondary" component="p">
-                In this section, you will be filling out three forms.
-                                              </Typography>
-            </div>
             <ul className={globalStyle.ul}>
-              <Typography component="li" variant="subtitle1"  color="textSecondary" align="center" >
-                - PHQ 9 Questionnaire
+              <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
+                - Javascript
                                               </Typography>
-              <Typography component="li" variant="subtitle1"  color="textSecondary" align="center" >
-                - GAD 7 Questionnaire
+              <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
+                - CSS
                                               </Typography>
-              <Typography component="li" variant="subtitle1"  color="textSecondary" align="center" >
-                - Weekly Reflection (max of 500char.)
+              <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
+                - React.JS
+                                              </Typography>
+              <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
+                - Redux/ReduxSAGA
+                                              </Typography>
+              <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
+                - Material-UI
+                                              </Typography>
+              <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
+                - MomentJS
+                                              </Typography>
+              <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
+                - Postgres
+                                              </Typography>
+              <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
+                - Express
+                                              </Typography>
+              <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
+                - Node.JS
                                               </Typography>
 
             </ul>
@@ -44,6 +66,7 @@ function InfoPage() {
       </CardActionArea>
     </Grid>
     </Grid>
+    </Container>
   );
 }
 
