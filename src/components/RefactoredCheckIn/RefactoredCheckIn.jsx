@@ -6,10 +6,21 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
-import { Grid } from '@material-ui/core';
+import { Grid, InputLabelProps, CssBaseline } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import swal from 'sweetalert';
 
-
+const theme = createMuiTheme({
+    palette: {
+      primary: {
+          main: '#00bfa5',
+        },
+        secondary: {
+          main: '#bbdefb',
+      },
+               
+  }})
 
 
 function RefactoredCheckIn() {
@@ -57,21 +68,32 @@ function RefactoredCheckIn() {
 
     const submitScores = (e) => {
         e.preventDefault();
+
         // SEND DISPATCH TO POST into DB
         dispatch({
             type: 'ADD_FORM',
             payload: { gad: GadScore, phq: PhqScore, reflection: reflection, dateSubmitted: today },
         });
+
         // SEND DISPATCH TO RENDER DATA ON USER STATS PAGE
-        dispatch({ type: 'GET_FORM' })
+        dispatch({ type: 'GET_FORM' });
 
 
         // PUSH TO USER HOME PAGE
-        history.push('/user')
+        history.push('/user');
+
         // EMPTY STATES
         setReflection('');
         setPhqAnswers(initStatePhq);
         setGadAnswers(initStateGad);
+
+        // SWEET ALERT
+        swal({
+            title: "Form Successfully Submitted",
+            text: "You can view this submission in Patient Statistics",
+            icon: "success",
+            button: "Back to Home",
+          });
     };
 
     // SAMPLE FUNCTION FOR EDIT LATER
@@ -86,12 +108,13 @@ function RefactoredCheckIn() {
         setReflection('');
         setPhqAnswers(initStatePhq);
         setGadAnswers(initStateGad);
-        // history.push('/user')
+        history.push('/user');
     }
 
     return (
-
         <Grid container justify='center' alignContent='center'>
+            <CssBaseline/>
+            <ThemeProvider theme={theme}>
             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Grid container justify='center'>
 
@@ -112,6 +135,7 @@ function RefactoredCheckIn() {
                                 InputProps={{
                                     inputProps: { min: 0, max: 3 }
                                 }}
+                            
                             />
                             <TextField
                                 value={phqAnswers.phqAnswer2}
@@ -202,6 +226,7 @@ function RefactoredCheckIn() {
                                 fullWidth
                                 className={globalStyle.input}
                                 onChange={(e) => setPhqAnswers({ ...phqAnswers, phqAnswer9: +e.target.value })}
+                                InputLabelProps={{shrink: true}}
                                 label='Q9: Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?'
                                 type="number"
                                 required
@@ -293,6 +318,7 @@ function RefactoredCheckIn() {
                                     fullWidth
                                     className={globalStyle.input}
                                     onChange={(e) => setGadAnswers({ ...gadAnswers, gadAnswer7: +e.target.value })}
+                                    InputLabelProps={{margin: 'dense'}}
                                     label='Q7: Feeling afraid as if something awful might happen?'
                                     type="number"
                                     required
@@ -325,12 +351,13 @@ function RefactoredCheckIn() {
 
                             <Box className={globalStyle.btnArea}>
                                 <SubmitButton onSubmit={submitScores} />
-                                <CancelButton handleCancel={handleCancel} />
+                                <CancelButton onClick={handleCancel} />
                             </Box>
                         </form>
                     </div>
                 </Grid>
             </Grid>
+            </ThemeProvider>
         </Grid>
 
 

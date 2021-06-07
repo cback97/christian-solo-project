@@ -3,12 +3,28 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './PatientStats.css'
 import globalUseStyle from '../GlobalImplementation/globalUseStyles';
+import { Button } from '@material-ui/core';
+import swal from 'sweetalert';
+
 // MATERIAL UI COMPONENTS
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import {Typography,CssBaseline,Grid} from '@material-ui/core';
+
 
 import ClientHeaderComponent from '../GlobalImplementation/ClientHeaderComponent'
+import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#bbdefb',
+    },
+    secondary: {
+      main: '#00bfa5',
+    },
+  typography: {
+    fontFamily: 'Work Sans'
+  }
+  }})
 function PatientStats() {
 
     const globalStyle = globalUseStyle();
@@ -36,14 +52,19 @@ function PatientStats() {
 
     const deleteSelector = (objectID) => {
         dispatch({ type: 'DELETE_ENTRY', payload: objectID })
-
+        swal({
+            title: "Form Successfully Deleted",
+            icon: "success",
+            button: "OK",
+          });
         dispatch({ type: 'GET_FORM' });
 
     }
 
     return (
-
         <div>
+            <ThemeProvider theme={theme}>
+             <CssBaseline />
             <Grid container justify='center'>
             <ClientHeaderComponent globalStyle={globalStyle}/>
 
@@ -58,15 +79,12 @@ function PatientStats() {
                         {clientItem.map(
                             (item) => <tr className="hoverTable" key={item.id} onClick={(event) => formSelector(item.id)}>
                                 <td className="hoverTable" onClick={specsRoute} >{item.date_submitted}</td>
-                                <td className="hoverTable"><button key={item.id} onClick={(event) => deleteSelector(item.id)}>DELETE</button></td></tr>)}
+                                <td className="hoverTable"><Button variant='contained' key={item.id} onClick={(event) => deleteSelector(item.id)}>DELETE</Button></td></tr>)}
                     </tbody>
                 </table>
             </Grid>
+            </ThemeProvider>
         </div>
-
-
-
-
 
 
     )

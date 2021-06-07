@@ -7,7 +7,8 @@ const globalUseStyle = makeStyles((theme) => ({
   },
   input: {
     marginBottom: theme.spacing(9),
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
+  
   },
   paper: {
     display: 'flex',
@@ -19,6 +20,7 @@ const globalUseStyle = makeStyles((theme) => ({
     border: '2px solid #000',
     boxShadow: '10px 10px 12px 5px rgba(0,0,0,0.56)',
     padding: theme.spacing(2, 4, 3),
+    marginTop: theme.spacing(6)
   },
   contentWrapper: {
     maxWidth: 1280,
@@ -42,20 +44,46 @@ const globalUseStyle = makeStyles((theme) => ({
    fname: {
     marginBottom: theme.spacing(4),
     marginTop: theme.spacing(5)
-  },navCard:{
+  },
+  navCard:{
 
     marginBottom: theme.spacing(4),
     marginTop: theme.spacing(4)
   
-  },midNavCard:{
+  },
+  midNavCard:{
 
     marginBottom: theme.spacing(4),
     marginTop: theme.spacing(3)
   }, editButton: {
     marginBottom: theme.spacing(4),
    
-  }
-  
+  }, 
+  card:{
+      height: "100%", 
+  },
+  cardHeader:{
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[700],
+  },
+  cardBody:{
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'baseline',
+  marginBottom: theme.spacing(2),
+},
+pageHeader: {
+  padding: theme.spacing(8, 0, 6),
+},
+pageSubHeader:{
+  padding: theme.spacing(0, 0, 6),
+},
+ul: {
+  margin: 0,
+  padding: 0,
+  padding: theme.spacing(0, 0, 2),
+  listStyle: 'none',
+}
 }));
 
 export default globalUseStyle;

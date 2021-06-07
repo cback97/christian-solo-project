@@ -26,6 +26,7 @@ import AdminHome from '../AdminHome/AdminHome';
 import PHQ9Form from '../Phq9Form/Phq9Form';
 import GAD7Form from '../Gad7Form/Gad7Form';
 import RefactoredCheckIn from '../RefactoredCheckIn/RefactoredCheckIn';
+import Pricing from '../Price/Price';
 import './App.css';
 
 function App() {
@@ -129,6 +130,9 @@ function App() {
           </Route>
           <Route path="/gad">
             <GAD7Form  />
+          </Route>
+          <Route path="/price">
+            <Pricing  />
           </Route>
           <Route>
             <h1>404</h1>

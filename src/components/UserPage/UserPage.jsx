@@ -3,16 +3,10 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import Grid from '@material-ui/core/Grid';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import { CssBaseline, CardContent, CardActionArea, Grid, Card, Typography, CardHeader } from '@material-ui/core';
+import globalUseStyle from '../GlobalImplementation/globalUseStyles';
+
 
 
 const useStyles = makeStyles({
@@ -25,7 +19,7 @@ const useStyles = makeStyles({
 function UserPage() {
   const user = useSelector((store) => store.user);
   const classes = useStyles();
-
+  const globalStyle = globalUseStyle();
 
   const history = useHistory();
 
@@ -45,33 +39,46 @@ function UserPage() {
 
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
+      <CssBaseline />
+      {/* <h2>Welcome, {user.username}!</h2>
+      
+      <LogOutButton className="btn" /> */}
       <div className="container">
         <h2>Welcome, {user.first_name} {user.last_name}</h2>
 
 
 
         {/* CARD TEMPLATE */}
-        <Grid container justify='center'  >
-          <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+        <Grid container spacing={5} justify="center" alignItems="flex-end">
+          <Grid item xs={12} sm={6} md={4} className={globalStyle.card}>
             <CardActionArea onClick={Assessment}>
-              <Card style={{ height: 250 }}>
+              <Card style={{ height: 250, backgroundColor: '#0dd0d3' }}>
+                <CardHeader
+                  title='Weekly Check-in'
+                  titleTypographyProps={{ align: 'center' }}
+                  subheaderTypographyProps={{ align: 'center' }}
+                  className={globalStyle.cardHeader}
+                />
 
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Weekly Check-in
-        </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    In this section, you will be filling out three forms.
-      <br /><br />
-     - PHQ 9 Questionnaire
-      <br />
-     - GAD 7 Questionnaire
-     <br />
-     - Weekly Reflection (max of 500char.)
-        </Typography>
+                <CardContent style={{ backgroundColor: '#0dd0d3' }}>
+                  <div className={globalStyle.cardBody}>
+                    <Typography variant="subtitle1" color="textSecondary" component="p">
+                      In this section, you will be filling out three forms.
+                                                    </Typography>
+                  </div>
+                  <ul className={globalStyle.ul}>
+                    <Typography component="li" variant="subtitle1"  color="textSecondary" align="center" >
+                      - PHQ 9 Questionnaire
+                                                    </Typography>
+                    <Typography component="li" variant="subtitle1"  color="textSecondary" align="center" >
+                      - GAD 7 Questionnaire
+                                                    </Typography>
+                    <Typography component="li" variant="subtitle1"  color="textSecondary" align="center" >
+                      - Weekly Reflection (max of 500char.)
+                                                    </Typography>
+
+                  </ul>
+
                 </CardContent>
 
               </Card>
@@ -80,36 +87,48 @@ function UserPage() {
           {/* END Patient Check-in Card */}
 
           {/* START Patient Information Card */}
-          <Grid item xs={4} sm={4} md={4} lg={4} xl={4} >
+          <Grid item xs={12} sm={6} md={4} className={globalStyle.card}>
             <CardActionArea onClick={PersonalInfo}>
-              <Card style={{ height: 250 }}>
-
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Personal Information
-        </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    In this section, you will be able to edit your contact and login information
-        </Typography>
+              <Card style={{ height: 250, backgroundColor: '#0dd0d3' }}>
+                <CardHeader
+                  title='Personal Information'
+                  titleTypographyProps={{ align: 'center' }}
+                  subheaderTypographyProps={{ align: 'center' }}
+                  className={globalStyle.cardHeader}
+                />
+                <CardContent style={{ backgroundColor: '#0dd0d3' }}>
+                  <div className={globalStyle.cardBody}>
+                    <Typography variant="subtitle1" color="textSecondary" component="p">
+                      In this section, you will be able to edit your contact and login information
+                                                    </Typography>
+                  </div>
                 </CardContent>
 
               </Card>
             </CardActionArea>
           </Grid>
+
           {/* END Patient Information Card */}
-          <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+          <Grid item xs={12} sm={6} md={4} className={globalStyle.card}>
             {/* Patient Statistics Card */}
             <CardActionArea onClick={Statistics}>
-              <Card style={{ height: 250 }}>
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Patient Statistics
-        </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
+              <Card style={{ height: 250, backgroundColor: '#0dd0d3' }}>
+              <CardHeader
+                  title='Patient Statistics'
+                  titleTypographyProps={{ align: 'center' }}
+                  subheaderTypographyProps={{ align: 'center' }}
+                  className={globalStyle.cardHeader}
+                />
+                 <CardContent style={{ backgroundColor: '#0dd0d3' }}>
+                  <div className={globalStyle.cardBody}>
+                    <Typography variant="subtitle1" color="textSecondary" component="p">
                     In this section, you will be able to select all of your weekly check-in's and,
                     edit or delete your submissions
-        </Typography>
+                                                                        </Typography>
+                  </div>
                 </CardContent>
+                
+       
 
               </Card>
             </CardActionArea>
