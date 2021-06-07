@@ -46,7 +46,7 @@ function InfoPage() {
                 - Material-UI
                                               </Typography>
               <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
-                - MomentJS
+                - Moment.JS
                                               </Typography>
               <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
                 - Postgres

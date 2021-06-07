@@ -92,7 +92,7 @@ function RefactoredCheckIn() {
             title: "Form Successfully Submitted",
             text: "You can view this submission in Patient Statistics",
             icon: "success",
-            button: "Back to Home",
+            button: "OK",
           });
     };
 
