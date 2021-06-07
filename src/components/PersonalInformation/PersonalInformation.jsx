@@ -8,7 +8,7 @@ import ClientHeaderComponent from '../GlobalImplementation/ClientHeaderComponent
 
 // MATERIAL UI COMPONENTS
 import { Box } from '@material-ui/core';
-import { TextField, CssBaseline, Container } from '@material-ui/core';
+import { TextField, CssBaseline, Container, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -40,6 +40,16 @@ function Personal() {
 
     // GLOBAL MAKE STYLES 
     const globalStyle = globalUseStyle();
+    const theme = createMuiTheme({
+        palette: {
+            primary: {
+                main: '#bbdefb',
+            },
+            secondary: {
+                main: '#00bfa5',
+            },
+                     
+    }})
 
     // USER REDUCER
     const userDetails = useSelector(store => store.user);
@@ -82,15 +92,21 @@ function Personal() {
         //Navigate back, because this page won't get fresh data from the server
         history.push('/');
 
+        swal({
+            title: "Personal Information Successfully Updated",
+            icon: "success",
+            button: "OK",
+          });
+
     };
 
     return (
         <div className="PersonalInfo">
+<ThemeProvider theme={theme}>
             <CssBaseline />
             <Grid container >
                 <ClientHeaderComponent globalStyle={globalStyle} />
             </Grid>
-
             <Grid container justify='center'>
                 <Typography className={globalStyle.fname} justify="center" variant="h2">{userDetails.first_name}'s Details</Typography>
             </Grid>
@@ -104,10 +120,10 @@ function Personal() {
 
             { ! editMode ?
 
-                <Grid container spacing={5}  justify="center" alignItems="flex-end"  >
+                <Grid container spacing={5}  justify="center" alignItems="flex-end" style={{textAlign: 'center'}} >
 
                     <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
-                        <Paper style={{ height: 150 }}>
+                        <Paper style={{ height: 350, backgroundColor: '#0dd0d3' }}>
                             <Typography justify="center" variant="h6">PERSONAL INFO</Typography>
                             <p>First Name: {userDetails.first_name}</p>
                             <p>Last Name: {userDetails.last_name}</p>
@@ -116,7 +132,7 @@ function Personal() {
                     </Grid>
 
                     <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
-                        <Paper style={{ height: 150 }}>
+                        <Paper style={{ height: 350, backgroundColor: '#0dd0d3' }}>
                             <Box>
                                 <Typography justify="center" variant="h6">CONTACT INFO</Typography>
                                 <p>Email: {userDetails.email}</p>
@@ -125,7 +141,7 @@ function Personal() {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
-                        <Paper style={{ height: 150 }}>
+                        <Paper style={{ height: 350, backgroundColor: '#0dd0d3' }}>
                             <Typography justify="center" variant="h6">LOGIN INFO</Typography>
 
                             <p>{userDetails.username}</p>
@@ -137,10 +153,11 @@ function Personal() {
                 : // BEGINNING EDIT MODE
 
 
-                <Grid container spacing={5}  justify="center" alignItems="flex-end"  >
-<Container>
+                <Grid container spacing={5}  justify="center" alignItems="flex-end" style={{textAlign: 'center'}}  >
+<>
                     <Grid item xs={4} sm={4} md={4} lg={4} xl={4} >
-                        <Paper style={{ height: 150 }}>
+                        <Paper style={{ height: 375, backgroundColor: '#0dd0d3' }}>
+                            <Container style={{marginTop: 25}}>
                             <Typography justify="center" variant="h6">PERSONAL INFO</Typography>
 
                             <TextField
@@ -174,12 +191,13 @@ function Personal() {
                                 InputLabelProps={{ shrink: true }}
 
                             />
+                            </Container>
                         </Paper>
                     </Grid>
 
                     <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-                        <Paper style={{ height: 150 }}>
-                            <Box>
+                        <Paper style={{ height: 375, backgroundColor: '#0dd0d3' }}>
+                            <Container style={{marginTop: 25}}>
                                 <Typography justify="center" variant="h6">CONTACT INFO</Typography>
 
                                 <TextField
@@ -202,11 +220,12 @@ function Personal() {
                                     required
                                 />
 
-                            </Box>
+                            </Container>
                         </Paper>
                     </Grid>
                     <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
-                        <Paper style={{ height: 150 }}>
+                        <Paper style={{ height: 375, backgroundColor: '#0dd0d3' }}>
+                            <Container style={{marginTop: 25}}>
                             <Typography justify="center" variant="h6">LOGIN INFO</Typography>
 
                             <TextField
@@ -219,10 +238,11 @@ function Personal() {
                                 required
 
                             />
+                            </Container>
                         </Paper>
 
                     </Grid>
-                </Container>
+                </>
                 </Grid>}
             <br />
             <br />
@@ -233,6 +253,7 @@ function Personal() {
             <br />
             <br />
             <br />
+            </ThemeProvider>
         </div>
     )
 }

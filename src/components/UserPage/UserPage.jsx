@@ -44,12 +44,12 @@ function UserPage() {
       
       <LogOutButton className="btn" /> */}
       <div className="container">
-        <h2>Welcome, {user.first_name} {user.last_name}</h2>
+        <h1>Welcome, {user.first_name} {user.last_name}</h1>
 
 
 
         {/* CARD TEMPLATE */}
-        <Grid container spacing={5} justify="center" alignItems="flex-end">
+        <Grid container spacing={5} justify="center" alignItems="flex-end" style={{marginTop: 30}}>
           <Grid item xs={12} sm={6} md={4} className={globalStyle.card}>
             <CardActionArea onClick={Assessment}>
               <Card style={{ height: 250, backgroundColor: '#0dd0d3' }}>
