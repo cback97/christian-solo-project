@@ -18,9 +18,10 @@ function InfoPage() {
   return (
     <Container style={{marginTop: 125, textAlign: 'center'}}>
     <Grid container spacing={5, 5,5,5} justify="center" alignItems="flex-end">
+      <CssBaseline />
     <Grid item xs={12} sm={6} md={4} className={globalStyle.card}>
       <CardActionArea >
-        <Card style={{ height: 425, backgroundColor: '#0dd0d3' }}>
+        <Card style={{ height: 475, backgroundColor: '#0dd0d3' }}>
           <CardHeader
             title='This app was built using the following:'
             titleTypographyProps={{ align: 'center' }}
@@ -31,13 +32,19 @@ function InfoPage() {
           <CardContent style={{ backgroundColor: '#0dd0d3' }}>
             <ul className={globalStyle.ul}>
               <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
-                - Javascript
+                - HTML
                                               </Typography>
               <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
                 - CSS
                                               </Typography>
               <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
+                - Javascript
+                                              </Typography>
+              <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
                 - React.JS
+                                              </Typography>
+              <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
+                - Axios
                                               </Typography>
               <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
                 - Redux/ReduxSAGA
@@ -56,6 +63,9 @@ function InfoPage() {
                                               </Typography>
               <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
                 - Node.JS
+                                              </Typography>
+              <Typography component="li" variant="subtitle1"  color="textPrimary" align="center" >
+                - Passport 
                                               </Typography>
 
             </ul>
