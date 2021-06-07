@@ -1,10 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import './SpecDetails.css'
-import { Card, CardActionArea, CardContent, CardActions, CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardActions, Grid, CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import globalUseStyle from '../GlobalImplementation/globalUseStyles';
 import ClientHeaderComponent from '../GlobalImplementation/ClientHeaderComponent'
 import { Button } from '@material-ui/core';
@@ -27,6 +26,7 @@ function SpecsPage() {
                      
     }})
 
+    const {id} = useParams();
 
     // REDUCER
     const specReducer = useSelector(store => store.specFormReducer)

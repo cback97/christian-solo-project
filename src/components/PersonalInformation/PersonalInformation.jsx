@@ -8,7 +8,7 @@ import ClientHeaderComponent from '../GlobalImplementation/ClientHeaderComponent
 
 // MATERIAL UI COMPONENTS
 import { Box } from '@material-ui/core';
-import { TextField, CssBaseline } from '@material-ui/core';
+import { TextField, CssBaseline, Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -87,7 +87,7 @@ function Personal() {
     return (
         <div className="PersonalInfo">
             <CssBaseline />
-            <Grid container justify='center'>
+            <Grid container >
                 <ClientHeaderComponent globalStyle={globalStyle} />
             </Grid>
 
@@ -104,7 +104,7 @@ function Personal() {
 
             { ! editMode ?
 
-                <Grid container justify='center'  >
+                <Grid container spacing={5}  justify="center" alignItems="flex-end"  >
 
                     <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
                         <Paper style={{ height: 150 }}>
@@ -137,8 +137,8 @@ function Personal() {
                 : // BEGINNING EDIT MODE
 
 
-                <Grid container justify='center'  >
-
+                <Grid container spacing={5}  justify="center" alignItems="flex-end"  >
+<Container>
                     <Grid item xs={4} sm={4} md={4} lg={4} xl={4} >
                         <Paper style={{ height: 150 }}>
                             <Typography justify="center" variant="h6">PERSONAL INFO</Typography>
@@ -222,6 +222,7 @@ function Personal() {
                         </Paper>
 
                     </Grid>
+                </Container>
                 </Grid>}
             <br />
             <br />
