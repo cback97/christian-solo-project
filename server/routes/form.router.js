@@ -13,7 +13,8 @@ router.get('/', (req, res) => {
   const user_id = req.user.id;
   const queryText = `SELECT form_data.id, date_submitted, first_name, last_name, gad_form_score, phq_form_score, reflections FROM "user"
                       JOIN form_data on "user".id = form_data.user_id
-                      WHERE form_data.user_id = $1;`;
+                      WHERE form_data.user_id = $1
+                      ORDER BY form_data.id ASC;`;
                       
   pool
   .query(queryText,[user_id])
