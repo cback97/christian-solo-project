@@ -108,7 +108,7 @@ function RefactoredCheckIn() {
         setReflection('');
         setPhqAnswers(initStatePhq);
         setGadAnswers(initStateGad);
-        history.push('/user');
+        
     }
 
     return (
